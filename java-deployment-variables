@@ -1,0 +1,27 @@
+
+export NEWRELIC_APP_NAME=hpbTomcat 
+export NEWRELIC_ENV=production
+export NEWRELIC_USER=tomcatuser 
+export NEWRELIC_LICENSE=NRK-LICENSEKEY
+export NEWRELIC_VERSION=1.1
+
+
+export NEWRELIC_DEPLOYMENT="--appname=${NEWRELIC_APP_NAME} \
+--environment=${NEWRELIC_ENV} \
+--user=${NEWRELIC_USER} \
+--revision=${NEWRELIC_VERSION} \
+--changes"
+
+
+export NEWRELIC_JAR=/source/newrelic/newrelic.jar
+
+export JAVA_OPTS="$JAVA_OPTS -javaagent:$NEWRELIC_JAR \
+ -Dnewrelic.config.app_name=${NEWRELIC_APP_NAME} \
+ -Dnewrelic.config.license_key=${NEWRELIC_LICENSE} \
+ -Dnewrelic.environment=${NEWRELIC_ENV}"
+
+
+
+
+echo "Deploying Latest Version of Tomcat `date` " | $JAVA_HOME/bin/java -jar ${NEWRELIC_JAR} deployment ${NEWRELIC_DEPLOYMENT}
+
