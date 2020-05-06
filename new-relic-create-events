@@ -1,0 +1,25 @@
+
+XXX_KEY_######
+
+curl -H "Accept: application/json" -H "X-Query-Key: YOUR_KEY_HERE" "https://insights-api.newrelic.com/v1/accounts/2510909/query?nrql=SELECT%20average(duration)%20FROM%20PageView"
+
+gzip -c example_events.json | 
+curl --data-binary @- -X POST 
+-H "Content-Type: application/json" -H "X-Insert-Key: YOUR_KEY_HERE" 
+-H "Content-Encoding: gzip" https://insights-collector.newrelic.com/v1/accounts/2510909/events
+
+
+[
+  {
+    "eventType":"github_action",
+    "repository":"new-relic-auto",
+    "name":"blank.yml",
+    "url":"https://github.com/hughbrien/new-relic-auto/blob/master/.github/workflows/blank.yml"
+  },
+  {
+    "eventType":"github_action",
+    "repository":"new-relic-auto",
+    "name":"blank.yml",
+    "url":"https://github.com/hughbrien/new-relic-auto/blob/master/.github/workflows/blank.yml"
+  }
+]
